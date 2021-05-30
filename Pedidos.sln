@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PedidosDataAccess", "PedidosDataAccess\PedidosDataAccess.csproj", "{A2C4F8D4-3EB3-4760-98C6-43F7960D8B92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PedidosServices", "PedidosServices\PedidosServices.csproj", "{812B8BD9-673E-42D0-A0AB-98CD8A4A7873}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2C4F8D4-3EB3-4760-98C6-43F7960D8B92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2C4F8D4-3EB3-4760-98C6-43F7960D8B92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2C4F8D4-3EB3-4760-98C6-43F7960D8B92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2C4F8D4-3EB3-4760-98C6-43F7960D8B92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{812B8BD9-673E-42D0-A0AB-98CD8A4A7873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{812B8BD9-673E-42D0-A0AB-98CD8A4A7873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{812B8BD9-673E-42D0-A0AB-98CD8A4A7873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{812B8BD9-673E-42D0-A0AB-98CD8A4A7873}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1FEC369-EC25-40B9-BCBE-5EE9058D92CA}
+	EndGlobalSection
+EndGlobal

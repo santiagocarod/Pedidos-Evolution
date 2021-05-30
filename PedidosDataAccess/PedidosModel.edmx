@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PedidosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PEDIDO">
+          <Key>
+            <PropertyRef Name="PedID" />
+          </Key>
+          <Property Name="PedID" Type="int" Nullable="false" />
+          <Property Name="PedUsu" Type="int" Nullable="false" />
+          <Property Name="PedProd" Type="int" Nullable="false" />
+          <Property Name="PedVrUnit" Type="money" Nullable="false" />
+          <Property Name="PedCant" Type="float" Nullable="false" />
+          <Property Name="PedSubTot" Type="money" Nullable="false" />
+          <Property Name="PedIva" Type="float" Nullable="false" />
+          <Property Name="PedTotal" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProDesc" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProValor" Type="money" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="UsuID" />
+          </Key>
+          <Property Name="UsuID" Type="int" Nullable="false" />
+          <Property Name="UsuNombre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuPass" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PEDIDO_PRODUCTO">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="ProID" />
+            </Principal>
+            <Dependent Role="PEDIDO">
+              <PropertyRef Name="PedProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDO_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="UsuID" />
+            </Principal>
+            <Dependent Role="PEDIDO">
+              <PropertyRef Name="PedUsu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PedidosModelStoreContainer">
+          <EntitySet Name="PEDIDO" EntityType="Self.PEDIDO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PEDIDO_PRODUCTO" Association="Self.FK_PEDIDO_PRODUCTO">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDO_USUARIOS" Association="Self.FK_PEDIDO_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PedidosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PEDIDO">
+          <Key>
+            <PropertyRef Name="PedID" />
+          </Key>
+          <Property Name="PedID" Type="Int32" Nullable="false" />
+          <Property Name="PedUsu" Type="Int32" Nullable="false" />
+          <Property Name="PedProd" Type="Int32" Nullable="false" />
+          <Property Name="PedVrUnit" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PedCant" Type="Double" Nullable="false" />
+          <Property Name="PedSubTot" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PedIva" Type="Double" Nullable="false" />
+          <Property Name="PedTotal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PEDIDO_PRODUCTO" FromRole="PEDIDO" ToRole="PRODUCTO" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_PEDIDO_USUARIOS" FromRole="PEDIDO" ToRole="USUARIOS" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProValor" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="PEDIDO" Relationship="Self.FK_PEDIDO_PRODUCTO" FromRole="PRODUCTO" ToRole="PEDIDO" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="UsuID" />
+          </Key>
+          <Property Name="UsuID" Type="Int32" Nullable="false" />
+          <Property Name="UsuNombre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuPass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PEDIDO" Relationship="Self.FK_PEDIDO_USUARIOS" FromRole="USUARIOS" ToRole="PEDIDO" />
+        </EntityType>
+        <Association Name="FK_PEDIDO_PRODUCTO">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="ProID" />
+            </Principal>
+            <Dependent Role="PEDIDO">
+              <PropertyRef Name="PedProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDO_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="PEDIDO" Type="Self.PEDIDO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="UsuID" />
+            </Principal>
+            <Dependent Role="PEDIDO">
+              <PropertyRef Name="PedUsu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PedidosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PEDIDO" EntityType="Self.PEDIDO" />
+          <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+          <AssociationSet Name="FK_PEDIDO_PRODUCTO" Association="Self.FK_PEDIDO_PRODUCTO">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDO_USUARIOS" Association="Self.FK_PEDIDO_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="PEDIDO" EntitySet="PEDIDO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PedidosModelStoreContainer" CdmEntityContainer="PedidosEntities">
+          <EntitySetMapping Name="PEDIDO">
+            <EntityTypeMapping TypeName="PedidosModel.PEDIDO">
+              <MappingFragment StoreEntitySet="PEDIDO">
+                <ScalarProperty Name="PedID" ColumnName="PedID" />
+                <ScalarProperty Name="PedUsu" ColumnName="PedUsu" />
+                <ScalarProperty Name="PedProd" ColumnName="PedProd" />
+                <ScalarProperty Name="PedVrUnit" ColumnName="PedVrUnit" />
+                <ScalarProperty Name="PedCant" ColumnName="PedCant" />
+                <ScalarProperty Name="PedSubTot" ColumnName="PedSubTot" />
+                <ScalarProperty Name="PedIva" ColumnName="PedIva" />
+                <ScalarProperty Name="PedTotal" ColumnName="PedTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTO">
+            <EntityTypeMapping TypeName="PedidosModel.PRODUCTO">
+              <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="ProDesc" ColumnName="ProDesc" />
+                <ScalarProperty Name="ProValor" ColumnName="ProValor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="PedidosModel.USUARIOS">
+              <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="UsuID" ColumnName="UsuID" />
+                <ScalarProperty Name="UsuNombre" ColumnName="UsuNombre" />
+                <ScalarProperty Name="UsuPass" ColumnName="UsuPass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
