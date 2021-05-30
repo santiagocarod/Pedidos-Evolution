@@ -44,7 +44,7 @@ namespace PedidosServices.Controllers
             return responseMessage;
         }
 
-        [HttpPatch]
+        [HttpPut]
         public HttpResponseMessage Patch(USUARIOS usuario)
         {
             HttpResponseMessage responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest);
