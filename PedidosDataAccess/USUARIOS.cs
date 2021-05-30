@@ -14,17 +14,8 @@ namespace PedidosDataAccess
     
     public partial class USUARIOS
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public USUARIOS()
-        {
-            this.PEDIDO = new HashSet<PEDIDO>();
-        }
-    
         public int UsuID { get; set; }
-        public int UsuNombre { get; set; }
+        public string UsuNombre { get; set; }
         public string UsuPass { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PEDIDO> PEDIDO { get; set; }
     }
 }

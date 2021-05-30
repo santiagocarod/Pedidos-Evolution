@@ -13,10 +13,10 @@ namespace PedidosDataAccess
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PedidosEntities : DbContext
+    public partial class ProyectoPedidosEntities : DbContext
     {
-        public PedidosEntities()
-            : base("name=PedidosEntities")
+        public ProyectoPedidosEntities()
+            : base("name=ProyectoPedidosEntities")
         {
         }
     

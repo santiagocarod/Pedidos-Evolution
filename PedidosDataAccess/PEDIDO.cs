@@ -22,8 +22,5 @@ namespace PedidosDataAccess
         public decimal PedSubTot { get; set; }
         public double PedIva { get; set; }
         public decimal PedTotal { get; set; }
-    
-        public virtual PRODUCTO PRODUCTO { get; set; }
-        public virtual USUARIOS USUARIOS { get; set; }
     }
 }
