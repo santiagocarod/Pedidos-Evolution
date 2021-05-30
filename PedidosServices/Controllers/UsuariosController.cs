@@ -31,6 +31,12 @@ namespace PedidosServices.Controllers
         public HttpResponseMessage Post(USUARIOS usuario)
         {
             HttpResponseMessage responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            if (usuario.UsuNombre==null || usuario.UsuPass==null)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest,"FALTA INFORMACIÓN: "+(usuario.UsuNombre==null?" UsuNombre ":"")+(usuario.UsuPass==null?" UsuPass ":""));
+            }
+
             using (ProyectoPedidosEntities entities = new ProyectoPedidosEntities())
             {
                 
@@ -45,14 +51,14 @@ namespace PedidosServices.Controllers
         }
 
         [HttpPut]
-        public HttpResponseMessage Patch(USUARIOS usuario)
+        public HttpResponseMessage Patch(int id,USUARIOS usuario)
         {
             HttpResponseMessage responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest);
             
             using (ProyectoPedidosEntities entities = new ProyectoPedidosEntities())
             {
 
-                USUARIOS usuarioActualizar = entities.USUARIOS.FirstOrDefault(u => u.UsuID == usuario.UsuID);
+                USUARIOS usuarioActualizar = entities.USUARIOS.First(u => u.UsuID == id);
                 if(usuarioActualizar != null) { 
                     usuarioActualizar.UsuNombre = usuario.UsuNombre != null?usuario.UsuNombre:usuarioActualizar.UsuNombre;
                     usuarioActualizar.UsuPass =usuario.UsuPass != null?usuario.UsuPass:usuarioActualizar.UsuPass;
@@ -61,7 +67,7 @@ namespace PedidosServices.Controllers
                 }
                 else
                 {
-                    responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, "Sin Codigo de Usuario o Usuario no encontrado Por favor envia algo asi: {\"UsuID\":1,\"UsuNombre\":\"Nuevo Nombre\"}");
+                    responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, "USUARIO NO ENCONTRADO");
                 }
 
             }
@@ -70,12 +76,16 @@ namespace PedidosServices.Controllers
         }
 
         [HttpDelete]
-        public HttpResponseMessage Delete(USUARIOS usuario)
+        public HttpResponseMessage Delete(int id)
         {
             HttpResponseMessage responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest);
 
             using (ProyectoPedidosEntities entities = new ProyectoPedidosEntities())
             {
+                USUARIOS usuario = new USUARIOS();
+
+                usuario.UsuID = id;
+
                 entities.USUARIOS.Attach(usuario);
                 USUARIOS usuarioEliminar = entities.USUARIOS.Remove(usuario);
                 if (usuarioEliminar == null)

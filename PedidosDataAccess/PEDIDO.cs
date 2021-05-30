@@ -20,7 +20,7 @@ namespace PedidosDataAccess
         public decimal PedVrUnit { get; set; }
         public double PedCant { get; set; }
         public decimal PedSubTot { get; set; }
-        public double PedIva { get; set; }
+        public double PedIVA { get; set; }
         public decimal PedTotal { get; set; }
     }
 }

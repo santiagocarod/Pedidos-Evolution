@@ -35,39 +35,30 @@ namespace PedidosServices.Controllers
             return Ok(pRODUCTO);
         }
 
-        // PUT: api/Productos/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutPRODUCTO(int id, PRODUCTO pRODUCTO)
+        [HttpPut]
+        public HttpResponseMessage Patch(int id, PRODUCTO producto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            HttpResponseMessage responseMessage = Request.CreateResponse(HttpStatusCode.BadRequest);
 
-            if (id != pRODUCTO.ProID)
+            using (ProyectoPedidosEntities entities = new ProyectoPedidosEntities())
             {
-                return BadRequest();
-            }
 
-            db.Entry(pRODUCTO).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PRODUCTOExists(id))
+                PRODUCTO productoActualizar = entities.PRODUCTO.First(u => u.ProID == id);
+                if (productoActualizar != null)
                 {
-                    return NotFound();
+                    productoActualizar.ProDesc = producto.ProDesc != null ? producto.ProDesc : productoActualizar.ProDesc;
+                    productoActualizar.ProValor = producto.ProValor != 0 ? producto.ProValor : productoActualizar.ProValor;
+                    entities.SaveChanges();
+                    responseMessage = Request.CreateResponse(HttpStatusCode.OK, productoActualizar);
                 }
                 else
                 {
-                    throw;
+                    responseMessage = Request.CreateResponse(HttpStatusCode.NotFound, "PRODUCTO NO ENCONTRADO");
                 }
-            }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            }
+            return responseMessage;
+
         }
 
         // POST: api/Productos

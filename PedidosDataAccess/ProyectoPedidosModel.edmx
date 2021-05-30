@@ -9,13 +9,13 @@
           <Key>
             <PropertyRef Name="PedID" />
           </Key>
-          <Property Name="PedID" Type="int" Nullable="false" />
+          <Property Name="PedID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PedUsu" Type="int" Nullable="false" />
           <Property Name="PedProd" Type="int" Nullable="false" />
           <Property Name="PedVrUnit" Type="money" Nullable="false" />
           <Property Name="PedCant" Type="float" Nullable="false" />
           <Property Name="PedSubTot" Type="money" Nullable="false" />
-          <Property Name="PedIva" Type="float" Nullable="false" />
+          <Property Name="PedIVA" Type="float" Nullable="false" />
           <Property Name="PedTotal" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="PRODUCTO">
@@ -24,7 +24,7 @@
           </Key>
           <Property Name="ProID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProDesc" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ProValor" Type="money" />
+          <Property Name="ProValor" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
@@ -48,13 +48,13 @@
           <Key>
             <PropertyRef Name="PedID" />
           </Key>
-          <Property Name="PedID" Type="Int32" Nullable="false" />
+          <Property Name="PedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PedUsu" Type="Int32" Nullable="false" />
           <Property Name="PedProd" Type="Int32" Nullable="false" />
           <Property Name="PedVrUnit" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="PedCant" Type="Double" Nullable="false" />
           <Property Name="PedSubTot" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="PedIva" Type="Double" Nullable="false" />
+          <Property Name="PedIVA" Type="Double" Nullable="false" />
           <Property Name="PedTotal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
         <EntityType Name="PRODUCTO">
@@ -63,7 +63,7 @@
           </Key>
           <Property Name="ProID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProValor" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ProValor" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
@@ -93,7 +93,7 @@
                 <ScalarProperty Name="PedVrUnit" ColumnName="PedVrUnit" />
                 <ScalarProperty Name="PedCant" ColumnName="PedCant" />
                 <ScalarProperty Name="PedSubTot" ColumnName="PedSubTot" />
-                <ScalarProperty Name="PedIva" ColumnName="PedIva" />
+                <ScalarProperty Name="PedIVA" ColumnName="PedIVA" />
                 <ScalarProperty Name="PedTotal" ColumnName="PedTotal" />
               </MappingFragment>
             </EntityTypeMapping>

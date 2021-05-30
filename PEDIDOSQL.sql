@@ -1,0 +1,27 @@
+USE [EVOLUTION]
+GO
+
+/****** Object:  Table [dbo].[PEDIDO]    Script Date: 30/05/2021 2:53:19 p. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PEDIDO](
+	[PedID] [int] IDENTITY(1,1) NOT NULL,
+	[PedUsu] [int] NOT NULL,
+	[PedProd] [int] NOT NULL,
+	[PedVrUnit] [money] NOT NULL,
+	[PedCant] [float] NOT NULL,
+	[PedSubTot] [money] NOT NULL,
+	[PedIVA] [float] NOT NULL,
+	[PedTotal] [money] NOT NULL,
+ CONSTRAINT [PK_PEDIDO] PRIMARY KEY CLUSTERED 
+(
+	[PedID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
